@@ -3,7 +3,7 @@
  * Plugin Name: Yandex.Metrika
  * Description: Enable Yandex.Metrika website analytics on your WordPress site.
  * Author: Konstantin Kovshenin
- * Version: 0.8
+ * Version: 0.8.2
  * License: GPLv2
  * Text Domain: metrika
  * Domain Path: /languages
@@ -22,13 +22,13 @@ class Yandex_Metrika_Plugin {
 			'counter-code' => '',
 		), (array) get_option( 'yandex-metrika', array() ) );
 
-		load_plugin_textdomain( 'metrika', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'yandex-metrika', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	function admin_init() {
 		register_setting( 'yandex-metrika', 'yandex-metrika', array( $this, 'sanitize' ) );
 		add_settings_section( 'general', '', '', 'yandex-metrika' );
-		add_settings_field( 'counter-code', __( 'Counter code', 'metrika' ), array( $this, 'field_counter_code' ), 'yandex-metrika', 'general' );
+		add_settings_field( 'counter-code', __( 'Counter code', 'yandex-metrika' ), array( $this, 'field_counter_code' ), 'yandex-metrika', 'general' );
 	}
 
 	function sanitize( $input ) {
@@ -43,20 +43,20 @@ class Yandex_Metrika_Plugin {
 	function field_counter_code() {
 		?>
 		<textarea name="yandex-metrika[counter-code]" class="code large-text" rows="10"><?php echo esc_textarea( $this->options['counter-code'] ); ?></textarea>
-		<p class="description"><?php _e( 'If you do not have a counter code, you can <a href="http://metrika.yandex.ru/">request one</a>.', 'metrika' ); ?>
+		<p class="description"><?php _e( 'If you do not have a counter code, you can <a href="http://metrika.yandex.ru/">request one</a>.', 'yandex-metrika' ); ?>
 		<?php
 	}
 
 	function admin_menu() {
-		add_options_page( __( 'Yandex Metrika', 'metrika' ), __( 'Yandex Metrika', 'metrika' ), 'manage_options', 'yandex-metrika', array( $this, 'render_options' ) );
+		add_options_page( __( 'Yandex Metrika', 'yandex-metrika' ), __( 'Yandex Metrika', 'yandex-metrika' ), 'manage_options', 'yandex-metrika', array( $this, 'render_options' ) );
 	}
 
 	function render_options() {
 		?>
 		<div class="wrap">
 			<?php screen_icon(); ?>
-	        <h2><?php _e( 'Yandex Metrika', 'metrika' ); ?></h2>
-	        <p><?php _e( 'Please enter your Yandex Metrika counter code in the field below and click Save Changes.', 'metrika' ); ?>
+	        <h2><?php _e( 'Yandex Metrika', 'yandex-metrika' ); ?></h2>
+	        <p><?php _e( 'Please enter your Yandex Metrika counter code in the field below and click Save Changes.', 'yandex-metrika' ); ?>
 	        <form action="options.php" method="POST">
 	            <?php settings_fields( 'yandex-metrika' ); ?>
 	            <?php do_settings_sections( 'yandex-metrika' ); ?>
@@ -72,4 +72,3 @@ class Yandex_Metrika_Plugin {
 	}
 }
 $GLOBALS['yandex_metrika_plugin'] = new Yandex_Metrika_Plugin;
-return;
