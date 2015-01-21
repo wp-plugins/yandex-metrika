@@ -3,7 +3,7 @@
  * Plugin Name: Yandex.Metrika
  * Description: Enable Yandex.Metrika website analytics on your WordPress site.
  * Author: Konstantin Kovshenin
- * Version: 0.8.2
+ * Version: 0.8.3
  * License: GPLv2
  * Text Domain: metrika
  * Domain Path: /languages
@@ -54,7 +54,6 @@ class Yandex_Metrika_Plugin {
 	function render_options() {
 		?>
 		<div class="wrap">
-			<?php screen_icon(); ?>
 	        <h2><?php _e( 'Yandex Metrika', 'yandex-metrika' ); ?></h2>
 	        <p><?php _e( 'Please enter your Yandex Metrika counter code in the field below and click Save Changes.', 'yandex-metrika' ); ?>
 	        <form action="options.php" method="POST">
